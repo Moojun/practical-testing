@@ -1,4 +1,4 @@
-package com.inflearn.practical_testing;
+package com.inflearn.practical_testing.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

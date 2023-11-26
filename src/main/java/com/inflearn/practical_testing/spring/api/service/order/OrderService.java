@@ -1,6 +1,7 @@
 package com.inflearn.practical_testing.spring.api.service.order;
 
 import com.inflearn.practical_testing.spring.api.controller.order.request.OrderCreateRequest;
+import com.inflearn.practical_testing.spring.api.service.order.request.OrderCreateServiceRequest;
 import com.inflearn.practical_testing.spring.api.service.order.response.OrderResponse;
 import com.inflearn.practical_testing.spring.domain.Stock.Stock;
 import com.inflearn.practical_testing.spring.domain.Stock.StockRepository;
@@ -34,7 +35,7 @@ public class OrderService {
      * 각자 차감을 하고 각자 반영을 한다. 어떻게 반영을 할 것인가? 어떤 데이터가 더 우선인 것인가?
      * Optimistic Lock / pessimistic lock / ... 개념을 사용함.
      */
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         List<Product> products = findProductsBy(productNumbers);
 

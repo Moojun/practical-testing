@@ -1,5 +1,6 @@
 package com.inflearn.practical_testing.spring.api.service.product;
 
+import com.inflearn.practical_testing.spring.api.service.product.request.ProductCreateServiceRequest;
 import com.inflearn.practical_testing.spring.api.service.product.response.ProductResponse;
 import com.inflearn.practical_testing.spring.api.controller.product.dto.request.ProductCreateRequest;
 import com.inflearn.practical_testing.spring.domain.product.Product;
@@ -44,7 +45,7 @@ public class ProductService {
     // case 2: 동시 접속자가 너무 많은 경우: productNumber 자체에 대한 정책을 수정.
     // 지금처럼 증가하는 값이 아닌, UUID 등을 사용하면 동시성과 관련 없이 해결이 가능할 수 있다.
     @Transactional
-    public ProductResponse createProduct(ProductCreateRequest request) {
+    public ProductResponse createProduct(ProductCreateServiceRequest request) {
         String nextProductNumber = createNextProductNumber();
 
         Product product = request.toEntity(nextProductNumber);

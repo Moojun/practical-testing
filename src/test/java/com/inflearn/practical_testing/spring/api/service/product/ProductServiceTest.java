@@ -1,6 +1,6 @@
 package com.inflearn.practical_testing.spring.api.service.product;
 
-import com.inflearn.practical_testing.spring.api.controller.product.dto.request.ProductCreateRequest;
+import com.inflearn.practical_testing.spring.api.service.product.request.ProductCreateServiceRequest;
 import com.inflearn.practical_testing.spring.api.service.product.response.ProductResponse;
 import com.inflearn.practical_testing.spring.domain.product.Product;
 import com.inflearn.practical_testing.spring.domain.product.ProductRepository;
@@ -42,7 +42,7 @@ class ProductServiceTest {
         Product product = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
         productRepository.save(product);
 
-        ProductCreateRequest request = ProductCreateRequest.builder()
+        ProductCreateServiceRequest request = ProductCreateServiceRequest.builder()
                 .type(HANDMADE)
                 .sellingStatus(SELLING)
                 .name("카푸치노")
@@ -70,7 +70,7 @@ class ProductServiceTest {
     @Test
     void createProductWhenProductsIsEmpty() {
         // given
-        ProductCreateRequest request = ProductCreateRequest.builder()
+        ProductCreateServiceRequest request = ProductCreateServiceRequest.builder()
                 .type(HANDMADE)
                 .sellingStatus(SELLING)
                 .name("카푸치노")

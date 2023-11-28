@@ -25,3 +25,28 @@
 ### MockMvc
 
 * Mock(가짜) 객체를 사용해 스프링 MVC 동작을 재현할 수 있는 테스트 프레임워크
+
+
+
+
+
+### Test Double
+
+* https://martinfowler.com/articles/mocksArentStubs.html 
+
+* Dummy, Fake, Stub, Spy, Mock 
+  * Dummy: 아무 것도 하지 않는 깡통 객체
+  * Fake: 단순한 형태로 동일한 기능은 수행하나, 프로덕션에서 쓰기에는 부족한 객체(ex. FakeRepository - Memory Map 같은 형태를 구현해서 FakeRepository.save() 가 요청되면 해당 객체를 Map에다가 put 한다. find by id의 경우 id를 기반으로 객체를 Map에서 찾아서 리턴해주는 등 리포지토리의 CRUD 기능을 다 모방은 할 수 있는 형태이다)
+  * Stub: 테스트에서 요청한 것에 대해 미리 준비한 결과를 제공하는 객체, 정의하지 않은 그 외의 요청들에 대해서는 응답하지 않는다.
+  * Spy: Stub이면서 호출된 내용을 기록하여 보여줄 수 있는 객체. 일부는 실제 객체처럼 동작시키고 일부만 Stubbing할 수 있다. 
+  * Mock: 행위에 대한 기대를 명세하고, 그에 따라 동작하도록 만들어진 객체
+* Stub과 Mock은 굉장히 헷갈린다. 
+  * 가짜 객체이고 ''뭔가 요청한 것에 대해 이러한 결과를 리턴해줘'' 라는 부분에서는 비슷하게 생각이 든다. 
+  * 검증하려는 목적이 다르다.
+  * Stub: 내부적인 상태가 어떻게 바뀌었는지에 대한 것에 초점이 맞추어져 있다. 
+  * Mock: 행위에 대한 것을 중심으로 검증을 하게 된다. 
+
+
+
+
+

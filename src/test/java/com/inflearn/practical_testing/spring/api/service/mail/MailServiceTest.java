@@ -6,10 +6,7 @@ import com.inflearn.practical_testing.spring.domain.history.mail.MailSendHistory
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,8 +25,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class) // 테스트가 시작될 때 Mockito를 사용해서 Mock 객체를 만들 것임을 알려준다.
 class MailServiceTest {
 
-    //    @Mock
-    @Spy
+    @Mock
+//    @Spy
     private MailSendClient mailSendClient;
 
     @Mock
@@ -63,17 +60,22 @@ class MailServiceTest {
     void sendMail() {
         // given
         // mock
-//        when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
-//            .thenReturn(true);
+//        Mockito.when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
+//                .thenReturn(true);
+
+        // 위의 Mockito.when(...) 과 동작은 동일하나
+        // BDD 스타일(given ~ when ~ then)로 명칭만 변경된 것임
+        BDDMockito.given(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
+                .willReturn(true);
 
         // spy
         // 한 객체에서 일부는 실제 로직(a(), b(), c())를 사용하고 나머지 일부만 stubbing을 하고 싶을 때 사용한다.
         // 실제로 사용 빈도는 많지 않은 것 같다.
         // 왜냐하면 하나의 객체의 기능이 엄청 많은데 이 중 일부만 쓰고 일부만 Mocking할 일이 그렇게 많지는 않아서
         // 보통 이제 @Mock을 주로 사용한다.
-        doReturn(true)
+        /*doReturn(true)
                 .when(mailSendClient)
-                .sendEmail(anyString(), anyString(), anyString(), anyString());
+                .sendEmail(anyString(), anyString(), anyString(), anyString());*/
 
         // when
         boolean result = mailService.sendMail("", "", "", "");
